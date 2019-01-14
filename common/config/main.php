@@ -10,4 +10,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'modules' => [
+        'gallery' => [
+            'class' => 'common\modules\gallery\Gallery',
+        ],
+    ],
+    'defaultRoute' => 'gallery/default/index'
 ];
