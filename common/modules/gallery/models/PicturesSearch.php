@@ -18,7 +18,7 @@ class PicturesSearch extends Pictures
     {
         return [
             [['id'], 'integer'],
-            [['author', 'pic_heading', 'pic_category', 'upload_date', 'status'], 'safe'],
+            [['author', 'pic_heading', 'pic_category', 'upload_date', 'status', 'extension'], 'safe'],
         ];
     }
 

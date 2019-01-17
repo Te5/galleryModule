@@ -3,7 +3,7 @@
 namespace common\modules\gallery\models;
 
 use Yii;
-
+use common\modules\gallery\models\Pictures;
 /**
  * This is the model class for table "categories".
  *
@@ -45,5 +45,12 @@ class Categories extends \yii\db\ActiveRecord
             'slug' => 'Slug',
             'status' => 'Status',
         ];
+    }
+    //this supposed to return array? of the last pictures in order to display them
+    public function getLastPicture()
+    {
+        $query = Pictures::find()->where(['pic_category' => 'Weddings'])->max('id');
+/*        $query->andFilterWhere(['like', 'pic_category', $this->cat_name]);*/
+        return $query;
     }
 }

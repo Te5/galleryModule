@@ -55,8 +55,11 @@ class PicturesController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $url = $model->getPictureUrl();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'url' => $url,
         ]);
     }
 
@@ -67,26 +70,28 @@ class PicturesController extends Controller
      */
     public function actionCreate()
     {
+
         if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
         {
             throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
-        } else 
-        {        
+        } else
+        {
             $model = new Pictures();
             $categories = new Categories();
 
-            if ($model->load(Yii::$app->request->post()) && $model->validate()) 
-            {   
+            if ($model->load(Yii::$app->request->post()) && $model->validate())
+            {
 
                 $model->fileImage = UploadedFile::getInstance($model, 'fileImage');
+                $model->extension = $model->fileImage->extension;
                 $model->save();
-                if ($model->fileImage) 
+                if ($model->fileImage)
                 {
                     $url = Url::to('@images/' . $model->pic_category . '/'.$model->id . '.' . $model->fileImage->extension);
                     $model->fileImage->saveAs($url);
-                }                
+                }
                 $model->upload_date = new \yii\db\Expression('NOW()');
-                
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
 

@@ -39,6 +39,9 @@ class CategoriesController extends Controller
         $searchModel = new CategoriesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $pictureSet = Categories::getLastPicture();
+/*        print_r($pictureSet);
+        die();*/
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

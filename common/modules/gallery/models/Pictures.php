@@ -16,7 +16,7 @@ use Yii;
  */
 class Pictures extends \yii\db\ActiveRecord
 {
-    public $fileImage;
+    public $url;
     /**
      * {@inheritdoc}
      */
@@ -34,8 +34,8 @@ class Pictures extends \yii\db\ActiveRecord
             [['author', 'pic_heading', 'pic_category', 'status', ], 'required', ],
             [['upload_date'], 'safe'],
             [['status'], 'string'],
-            [['author', 'pic_heading', 'pic_category'], 'string', 'max' => 255],
-            [['fileImage'], 'file', 'extensions' => 'png, jpg', 'maxSize' => 1024*1024*10, ],
+            [['author', 'pic_heading', 'pic_category', 'extension'], 'string', 'max' => 255],
+            [['fileImage'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024*1024*10, ],
         ];
     }
 
@@ -54,4 +54,9 @@ class Pictures extends \yii\db\ActiveRecord
             'fileImage' => 'Image',
         ];
     }
+    public function getPictureUrl() 
+    {
+        return \Yii::getAlias('@web').'/images/'.$this->pic_category.'/'.$this->id.'.'.$this->extension;
+    }
+
 }

@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\common\modules\gallery\models\Pictures */
 
-$this->title = $model->id;
+$this->title = $model->pic_heading;
 $this->params['breadcrumbs'][] = ['label' => 'Pictures', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -26,16 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'author',
-            'pic_heading',
-            'pic_category',
-            'upload_date',
-            'status:ntext',
-        ],
-    ]) ?>
-
+<!--     <?= DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'author',
+        'pic_heading',
+        'pic_category',
+        'upload_date',
+        'status:ntext',
+    ],
+]) ?> -->
+    <?php
+/*    print_r($url);
+    die();*/
+     ?>
+     <img height="200" width="200" src="<?= $url ?>">
 </div>
