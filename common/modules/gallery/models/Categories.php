@@ -47,10 +47,31 @@ class Categories extends \yii\db\ActiveRecord
         ];
     }
     //this supposed to return array? of the last pictures in order to display them
-    public function getLastPicture()
+    public function getLatestPictures()
     {
-        $query = Pictures::find()->where(['pic_category' => 'Weddings'])->max('id');
-/*        $query->andFilterWhere(['like', 'pic_category', $this->cat_name]);*/
-        return $query;
+        //array that contains only the latest pictures
+        $picturesArray = [];
+
+        $categories = static::find()->all();
+        foreach ($categories as $category) 
+        {
+            $maxIdPicture = Pictures::find()->where(['pic_category' => $category->cat_name])->max('id');
+            $maxIdPictureModel = Pictures::find()->where(['id'=>$maxIdPicture])->one();
+            
+            //this adds an undefined question mark picture if category contains no pictures at all
+            if (!$maxIdPictureModel)
+            {
+                $pictureUrl = \Yii::getAlias('@web').'/images/undefined.jpg';
+            } else 
+            {
+                $pictureUrl = $maxIdPictureModel::getPictureUrl($maxIdPictureModel);
+            }
+
+            array_push($picturesArray, [$category->slug => $pictureUrl]);
+
+        }
+/*        print_r($picturesArray);
+        die();*/
+        return $picturesArray;
     }
 }

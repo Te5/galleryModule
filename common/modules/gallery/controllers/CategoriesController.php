@@ -5,6 +5,7 @@ namespace common\modules\gallery\controllers;
 use Yii;
 use common\modules\gallery\models\Categories;
 use common\modules\gallery\models\CategoriesSearch;
+use common\modules\gallery\models\PicturesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -39,12 +40,13 @@ class CategoriesController extends Controller
         $searchModel = new CategoriesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $pictureSet = Categories::getLastPicture();
+        $pictureSet = Categories::getLatestPictures();
 /*        print_r($pictureSet);
         die();*/
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pictureSet'=>$pictureSet,
         ]);
     }
 
@@ -54,10 +56,17 @@ class CategoriesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($slug)
     {
+        $searchModel = new PicturesSearch();
+        $model = Categories::findOne(['slug'=>$slug]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andFilterWhere(['pic_category'=> $model->cat_name]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

@@ -1,0 +1,10 @@
+<h3><?= $model->cat_name ?></h3>
+<p><?= $model->status ?></p>
+<h3><?= $model->cat_name ?></h3>
+<p><?= $model->status ?></p>
+<h3><?= $model->cat_name ?></h3>
+<p><?= $model->status ?></p>
+<h3><?= $model->cat_name ?></h3>
+<p><?= $model->status ?></p>
+<h3><?= $model->cat_name ?></h3>
+<p><?= $model->status ?></p>

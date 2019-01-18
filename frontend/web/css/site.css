@@ -118,3 +118,9 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.item 
+{
+    width: 200px;
+    height: 200px;
+}

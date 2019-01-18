@@ -17,6 +17,7 @@ use Yii;
 class Pictures extends \yii\db\ActiveRecord
 {
     public $url;
+    public $fileImage;
     /**
      * {@inheritdoc}
      */
@@ -54,9 +55,9 @@ class Pictures extends \yii\db\ActiveRecord
             'fileImage' => 'Image',
         ];
     }
-    public function getPictureUrl() 
+    public function getPictureUrl($model) 
     {
-        return \Yii::getAlias('@web').'/images/'.$this->pic_category.'/'.$this->id.'.'.$this->extension;
+        return \Yii::getAlias('@web').'/images/'.$model->pic_category.'/'.$model->id.'.'.$model->extension;
     }
 
 }

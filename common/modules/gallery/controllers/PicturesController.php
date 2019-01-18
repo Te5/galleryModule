@@ -56,7 +56,7 @@ class PicturesController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $url = $model->getPictureUrl();
+        $url = $model->getPictureUrl($model);
         return $this->render('view', [
             'model' => $model,
             'url' => $url,

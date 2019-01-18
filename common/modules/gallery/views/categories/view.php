@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model common\modules\gallery\models\Categories */
 
@@ -26,14 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'cat_name',
-            'slug',
-            'status',
+    <?=  GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+        'id',
+        'pic_heading',
+        // ...
         ],
-    ]) ?>
+    ]); ?>
 
 </div>

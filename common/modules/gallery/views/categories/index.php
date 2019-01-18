@@ -8,8 +8,11 @@ use yii\helpers\Url;
 /* @var $searchModel common\modules\gallery\models\CategoriesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->registerCssFile(\Yii::getAlias('@web').'/css/masonry.css');
+
 $this->title = 'Photogallery';
 $this->params['breadcrumbs'][] = $this->title;
+\frontend\assets\AppAsset::register($this);
 ?>
 <div class="categories-index">
 
@@ -27,23 +30,39 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'cat_name',
-            'slug',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-<div class="row">
-  <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-  <div class="col-sm-4">.col-sm-4</div>
-  <div class="col-sm-4">.col-sm-4</div>
 </div>
-</div>
+<?php \yii2masonry\yii2masonry::begin([
+    'clientOptions' => [
+        'columnWidth' => 50,
+        'itemSelector' => '.item'
+    ]
+]); ?>
+    
+    <?php
+/*        print_r($pictureSet);
+        die();*/
+        foreach ($pictureSet as $index => $array) 
+        {
+            foreach ($array as $slug => $url) 
+            {
+                $link = Url::to(['categories/view', 'slug' =>$slug]);
+                echo Html::beginTag('div', ['class'=> 'item']);
+                echo Html::beginTag('a', ['href'=> $link]);
+                echo Html::img($url, ['width'=> 200, 'height'=>200]);
+                echo Html::endTag('a');
+                echo Html::endTag('div');
+            }
+        }
+
+
+
+      ?>
+
+
+ <!--        <div class="item" ><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div> -->
+
+
+<?php \yii2masonry\yii2masonry::end(); ?>
