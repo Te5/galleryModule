@@ -10,7 +10,11 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+
+$this->registerJs('baguetteBox.run(".gallery");');
 ?>
+
 <div class="categories-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -37,3 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+<?php
+$pictureUrl = \Yii::getAlias('@web').'/images/undefined.jpg';
+
+
+?>
+<script>baguetteBox.run('.gallery');</script>
+<div class="gallery">
+    <a href="<?=$pictureUrl?>" data-caption="Image caption">
+        <img src="<?=$pictureUrl?>" alt="First image">
+    </a>
+    <a href="<?=$pictureUrl?>">
+        <img src="<?=$pictureUrl?>" alt="Second image">
+    </a>
+</div>
+
