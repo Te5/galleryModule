@@ -60,4 +60,29 @@ class Pictures extends \yii\db\ActiveRecord
         return \Yii::getAlias('@web').'/images/'.$model->pic_category.'/'.$model->id.'.'.$model->extension;
     }
 
+    public function createCompressedImage($file, $extension, $url) 
+    {
+        switch ($extension) 
+        {
+            case 'jpg':
+                $im = imagecreatefromjpeg($file);
+                break;
+            case 'jpeg':
+                $im = imagecreatefromjpeg($file);
+                break;
+            case 'gif':
+                $im = imagecreatefromgif($file);
+                break;
+            case 'png':
+                $im = imagecreatefrompng($file);
+                break;
+            default:
+                break;
+
+        }
+        header('Content-Type: image/jpeg');
+        $image = imagejpeg($im, $url, 40);
+        
+        return $image;
+    }
 }

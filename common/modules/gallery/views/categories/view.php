@@ -1,18 +1,20 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $model common\modules\gallery\models\Categories */
 
-$this->title = $model->id;
+$this->title = $model->cat_name;
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
-
 $this->registerJs('baguetteBox.run(".gallery");');
+
 ?>
 
 <div class="categories-view">
@@ -30,29 +32,30 @@ $this->registerJs('baguetteBox.run(".gallery");');
         ]) ?>
     </p>
 
-    <?=  GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-        'id',
-        'pic_heading',
-        // ...
-        ],
-    ]); ?>
 
 </div>
-<?php
-$pictureUrl = \Yii::getAlias('@web').'/images/undefined.jpg';
 
+<?php
+ \yii2masonry\yii2masonry::begin([
+    'clientOptions' => [
+        'columnWidth' => 30,
+        'itemSelector' => '.gallery'
+    ]
+    ]); 
+    echo Html::beginTag('div', ['class'=> 'gallery']);
+    foreach ($picModels as $model) 
+    {
+        $url = $model->getPictureUrl($model);
+        $img = Html::img($url, ['width'=>200, 'height'=>200]);
+        
+        echo Html::beginTag('a', ['href'=> $url, 'data-caption'=> $model->pic_heading]);
+        echo $img;
+        echo Html::endTag('a');
+
+    }
+    echo Html::endTag('div');
 
 ?>
-<script>baguetteBox.run('.gallery');</script>
-<div class="gallery">
-    <a href="<?=$pictureUrl?>" data-caption="Image caption">
-        <img src="<?=$pictureUrl?>" alt="First image">
-    </a>
-    <a href="<?=$pictureUrl?>">
-        <img src="<?=$pictureUrl?>" alt="Second image">
-    </a>
-</div>
+<?php \yii2masonry\yii2masonry::end(); ?>
+
 

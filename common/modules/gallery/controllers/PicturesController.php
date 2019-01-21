@@ -88,7 +88,9 @@ class PicturesController extends Controller
                 if ($model->fileImage)
                 {
                     $url = Url::to('@images/' . $model->pic_category . '/'.$model->id . '.' . $model->fileImage->extension);
-                    $model->fileImage->saveAs($url);
+                    $img = Pictures::createCompressedImage($model->fileImage->tempName, $model->extension, $url);
+                    /*$model->fileImage->saveAs($url);*/
+                    /*$img->saveAs($url);*/
                 }
                 $model->upload_date = new \yii\db\Expression('NOW()');
 
@@ -100,7 +102,7 @@ class PicturesController extends Controller
                 'categories' => $categories,
             ]);
         }
-    }
+    } 
 
     /**
      * Updates an existing Pictures model.
@@ -132,8 +134,15 @@ class PicturesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $url = $model->getPictureUrl($model);
+        $deleteUrl = Yii::$app->basePath.'/web'.$url;
+        if(file_exists($deleteUrl))
+        {
+            unlink($deleteUrl);
+        }
 
+        $model->delete();
         return $this->redirect(['index']);
     }
 

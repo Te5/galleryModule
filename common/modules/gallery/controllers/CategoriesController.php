@@ -6,6 +6,7 @@ use Yii;
 use common\modules\gallery\models\Categories;
 use common\modules\gallery\models\CategoriesSearch;
 use common\modules\gallery\models\PicturesSearch;
+use common\modules\gallery\models\Pictures;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -61,12 +62,17 @@ class CategoriesController extends Controller
         $searchModel = new PicturesSearch();
         $model = Categories::findOne(['slug'=>$slug]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['pic_category'=> $model->cat_name]);
+        $dataProvider->query->andFilterWhere(['pic_category'=> $model->cat_name])->all();
 
+
+        $picModels = Pictures::find()->where(['pic_category'=>$model->cat_name])->all();
+/*        print_r($picModels);
+        die();*/
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'picModels' => $picModels,
         ]);
     }
 

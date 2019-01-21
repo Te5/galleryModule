@@ -8,11 +8,12 @@ use yii\helpers\Url;
 /* @var $searchModel common\modules\gallery\models\CategoriesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->registerCssFile(\Yii::getAlias('@web').'/css/masonry.css');
 
 $this->title = 'Photogallery';
 $this->params['breadcrumbs'][] = $this->title;
-\frontend\assets\AppAsset::register($this);
+
+
+/*\frontend\assets\AppAsset::register($this);*/
 ?>
 <div class="categories-index">
 
@@ -39,8 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ]); ?>
     
     <?php
-/*        print_r($pictureSet);
-        die();*/
+
         foreach ($pictureSet as $index => $array) 
         {
             foreach ($array as $slug => $url) 
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $link = Url::to(['categories/view', 'slug' =>$slug]);
                 echo Html::beginTag('div', ['class'=> 'item']);
                 echo Html::beginTag('a', ['href'=> $link]);
-                echo Html::img($url, ['width'=> 200, 'height'=>200]);
+                echo Html::img($url);
                 echo Html::endTag('a');
                 echo Html::endTag('div');
             }
