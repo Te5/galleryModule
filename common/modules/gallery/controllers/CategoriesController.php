@@ -63,7 +63,7 @@ class CategoriesController extends Controller
         $model = Categories::findOne(['slug'=>$slug]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andFilterWhere(['pic_category'=> $model->cat_name])->all();
-
+        $dataProvider->pagination = ['pageSize' =>5];
 
         $picModels = Pictures::find()->where(['pic_category'=>$model->cat_name])->all();
 /*        print_r($picModels);

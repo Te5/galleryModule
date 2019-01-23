@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
-
+use yii\widgets\ListView;
 /* @var $this yii\web\View */
 /* @var $model common\modules\gallery\models\Categories */
 
@@ -35,27 +35,34 @@ $this->registerJs('baguetteBox.run(".gallery");');
 
 </div>
 
-<?php
- \yii2masonry\yii2masonry::begin([
-    'clientOptions' => [
-        'columnWidth' => 30,
-        'itemSelector' => '.gallery'
-    ]
-    ]); 
-    echo Html::beginTag('div', ['class'=> 'gallery']);
+<!-- <?php
+
+    echo Html::beginTag('div', ['class'=> 'gallery container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }']);
     foreach ($picModels as $model) 
     {
         $url = $model->getPictureUrl($model);
         $img = Html::img($url, ['width'=>200, 'height'=>200]);
-        
+        echo Html::beginTag('div', ['class'=> 'grid-item']);
         echo Html::beginTag('a', ['href'=> $url, 'data-caption'=> $model->pic_heading]);
         echo $img;
         echo Html::endTag('a');
+        echo Html::endTag('div');
 
     }
     echo Html::endTag('div');
 
-?>
-<?php \yii2masonry\yii2masonry::end(); ?>
 
 
+?> -->
+
+
+<?php 
+echo Html::beginTag('div', ['class'=> 'gallery container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }']);
+
+echo ListView::widget([
+    'dataProvider' => $dataProvider,
+    'itemView' => '_pictures',
+]);
+
+echo Html::endTag('div');
+ ?>

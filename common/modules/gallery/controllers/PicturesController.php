@@ -57,6 +57,7 @@ class PicturesController extends Controller
     {
         $model = $this->findModel($id);
         $url = $model->getPictureUrl($model);
+        
         return $this->render('view', [
             'model' => $model,
             'url' => $url,

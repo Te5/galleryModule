@@ -13,7 +13,7 @@ $this->title = 'Photogallery';
 $this->params['breadcrumbs'][] = $this->title;
 
 
-\frontend\assets\AppAsset::register($this);
+/*\frontend\assets\AppAsset::register($this);*/
 ?>
 <div class="categories-index">
 
@@ -32,24 +32,37 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 </div>
-
+<?php \yii2masonry\yii2masonry::begin([
+    'clientOptions' => [
+        'columnWidth' => 50,
+        'itemSelector' => '.item'
+    ]
+]); ?>
+    
     <?php
-        echo Html::beginTag('div', ['class'=> 'container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }' ]);
+
         foreach ($pictureSet as $index => $array) 
         {
             foreach ($array as $slug => $url) 
             {
                 $link = Url::to(['categories/view', 'slug' =>$slug]);
-                
-                echo Html::beginTag('div', ['class'=> 'grid-item']);
+                echo Html::beginTag('div', ['class'=> 'item']);
                 echo Html::beginTag('a', ['href'=> $link]);
-                echo Html::img($url, ['width'=>200]);
+                echo Html::img($url);
                 echo Html::endTag('a');
                 echo Html::endTag('div');
-                
             }
         }
-        echo Html::endTag('div');
+
 
 
       ?>
+
+
+ <!--        <div class="item" ><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div>
+ <div class="item"><img src="https://i.redd.it/spo5q1n66gg11.jpg"height="200" width="200"></div> -->
+
+
+<?php \yii2masonry\yii2masonry::end(); ?>

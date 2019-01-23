@@ -14,11 +14,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/baguetteBox.css',
-        'css/masonry.css'
-
+        /*'css/masonry.css'
+*/
     ];
     public $js = [
         'js/baguetteBox.js',
+        'js/masonry.pkgd.js',
+        'js/infinite-scroll.pkgd.min.js',
+
     ];
     public $depends = [
         'yii\web\YiiAsset',
