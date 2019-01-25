@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a2a7eff95febaf8b25da1084494294d",
+    "content-hash": "b37cbfcde04d86a31e9f96cf790fc762",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -130,6 +130,29 @@
             ]
         },
         {
+            "name": "bower-asset/imagesloaded",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/desandro/imagesloaded.git",
+                "reference": "67c4e57453120935180c45c6820e7d3fbd2ea1f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/desandro/imagesloaded/zipball/67c4e57453120935180c45c6820e7d3fbd2ea1f9",
+                "reference": "67c4e57453120935180c45c6820e7d3fbd2ea1f9",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/ev-emitter": ">=1.0.0,<2.0.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ],
+            "time": "2018-01-02T16:53:35+00:00"
+        },
+        {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
             "source": {
@@ -163,6 +186,25 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/77d2a51d0520d2ee44173afdf4e40a9201f5964e",
                 "reference": "77d2a51d0520d2ee44173afdf4e40a9201f5964e",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-infinite-scroll",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/metafizzy/infinite-scroll.git",
+                "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/metafizzy/infinite-scroll/zipball/f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
+                "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
                 "shasum": null
             },
             "type": "bower-asset",
@@ -434,6 +476,53 @@
             "time": "2018-12-04T22:38:24+00:00"
         },
         {
+            "name": "ereminmdev/yii2-infinite-scroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll.git",
+                "reference": "1432cbaf7ee7ceda553f6d115faefe73a091200d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll/get/1432cbaf7ee7ceda553f6d115faefe73a091200d.zip",
+                "reference": "1432cbaf7ee7ceda553f6d115faefe73a091200d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "webcreate/jquery-ias": "^2.2",
+                "yiisoft/yii2": "~2.0.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ereminmdev\\yii2\\infinite_scroll\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Eremin",
+                    "email": "ereminmdev@gmail.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Infinite ajax scroll widget for Yii framework.",
+            "homepage": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll",
+            "keywords": [
+                "javascript",
+                "pager",
+                "pagination",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-03-15T13:01:25+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.10.0",
             "source": {
@@ -481,6 +570,54 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+            "name": "kop/yii2-scroll-pager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kop/yii2-scroll-pager.git",
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/9b9727ce441fbfc487044535ab6ce0b7694d810b",
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "webcreate/jquery-ias": "^2.2.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kop\\y2sp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Koptiev",
+                    "email": "ivan.koptiev@codex.systems",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Infinite AJAX scrolling for Yii2 ListView widget",
+            "homepage": "http://kop.github.io/yii2-scroll-pager/",
+            "keywords": [
+                "pager",
+                "pagination",
+                "scroll",
+                "scrolling",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-07-06T19:56:33+00:00"
+        },
+        {
             "name": "newerton/yii2-fancybox-3",
             "version": "dev-master",
             "source": {
@@ -524,6 +661,55 @@
                 "yii2"
             ],
             "time": "2018-04-20T16:51:49+00:00"
+        },
+        {
+            "name": "nirvana-msu/yii2-infinite-scroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nirvana-msu/yii2-infinite-scroll.git",
+                "reference": "ee78b2f2abb1a2c18248867733ddc37eee68392c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nirvana-msu/yii2-infinite-scroll/zipball/ee78b2f2abb1a2c18248867733ddc37eee68392c",
+                "reference": "ee78b2f2abb1a2c18248867733ddc37eee68392c",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-infinite-scroll": "2.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "nirvana\\infinitescroll\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Stepanov",
+                    "email": "student_vmk@mail.ru"
+                }
+            ],
+            "description": "Yii2 extension for infinite-scroll jQuery plugin",
+            "keywords": [
+                "infinite-scroll",
+                "jquery",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-07-17T20:37:34+00:00"
         },
         {
             "name": "philippfrenzel/yii2masonry",
@@ -570,23 +756,117 @@
             "time": "2015-01-21T21:51:24+00:00"
         },
         {
+            "name": "shiyang/yii2-infinite-scroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shi-yang/yii2-infinite-scroll.git",
+                "reference": "762a619a5fd0f08b975c5ed0b893a67763383bcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shi-yang/yii2-infinite-scroll/zipball/762a619a5fd0f08b975c5ed0b893a67763383bcf",
+                "reference": "762a619a5fd0f08b975c5ed0b893a67763383bcf",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-infinite-scroll": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "shiyang\\infinitescroll\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shiyang",
+                    "email": "dr@shiyang.me"
+                }
+            ],
+            "description": "Yii2 extension for infinite-scroll jQuery plugin",
+            "keywords": [
+                "infinite-scroll",
+                "jquery",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-02-03T07:16:17+00:00"
+        },
+        {
+            "name": "shiyang/yii2-masonry",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shi-yang/yii2-masonry.git",
+                "reference": "d7248eec7d6bf02e9240dc344e10e5916f16cdf7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shi-yang/yii2-masonry/zipball/d7248eec7d6bf02e9240dc344e10e5916f16cdf7",
+                "reference": "d7248eec7d6bf02e9240dc344e10e5916f16cdf7",
+                "shasum": ""
+            },
+            "require": {
+                "shiyang/yii2-infinite-scroll": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "shiyang\\masonry\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shiyang",
+                    "email": "dr@shiyang.me"
+                }
+            ],
+            "description": "Masonry Yii2 Extension width infinitescroll",
+            "keywords": [
+                "extension",
+                "infinitescroll",
+                "masonry",
+                "yii2"
+            ],
+            "time": "2015-05-02T06:02:16+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "511e25825a988ba5c02a74e5503a8d637ca2bcf1"
+                "reference": "bb120bb10dd145f686865f434bbba53715f6ca53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/511e25825a988ba5c02a74e5503a8d637ca2bcf1",
-                "reference": "511e25825a988ba5c02a74e5503a8d637ca2bcf1",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/bb120bb10dd145f686865f434bbba53715f6ca53",
+                "reference": "bb120bb10dd145f686865f434bbba53715f6ca53",
                 "shasum": ""
             },
             "require": {
                 "egulias/email-validator": "~2.0",
                 "php": ">=7.0.0",
-                "symfony/polyfill-intl-idn": "^1.10"
+                "symfony/polyfill-iconv": "^1.0",
+                "symfony/polyfill-intl-idn": "^1.10",
+                "symfony/polyfill-mbstring": "^1.0"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9.1",
@@ -627,7 +907,66 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2019-01-19T11:27:29+00:00"
+            "time": "2019-01-20T16:10:32+00:00"
+        },
+        {
+            "name": "symfony/polyfill-iconv",
+            "version": "v1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-iconv.git",
+                "reference": "97001cfc283484c9691769f51cdf25259037eba2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/97001cfc283484c9691769f51cdf25259037eba2",
+                "reference": "97001cfc283484c9691769f51cdf25259037eba2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-iconv": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Iconv\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Iconv extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "iconv",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2018-09-21T06:26:08+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -806,17 +1145,57 @@
             "time": "2018-09-21T13:07:52+00:00"
         },
         {
+            "name": "webcreate/jquery-ias",
+            "version": "2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webcreate/infinite-ajax-scroll.git",
+                "reference": "33e0096ca99eef256a98340131791de7d09c202a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webcreate/infinite-ajax-scroll/zipball/33e0096ca99eef256a98340131791de7d09c202a",
+                "reference": "33e0096ca99eef256a98340131791de7d09c202a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fieg",
+                    "email": "jeroen@webcreate.nl",
+                    "homepage": "http://webcreate.nl"
+                }
+            ],
+            "description": "Infinite Ajax Scroll: A jQuery plugin that turns your server-side pagination into an infinite scrolling one using AJAX",
+            "homepage": "https://infiniteajaxscroll.com",
+            "keywords": [
+                "ajax",
+                "ias",
+                "infinite",
+                "jquery",
+                "pagination",
+                "scroll",
+                "scrolling"
+            ],
+            "time": "2018-10-01T11:39:46+00:00"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "049583f8244b95f6d45e2c6da8f220a42d401f50"
+                "reference": "6b304c949c9093c9106d8612166d4ae40412135e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/049583f8244b95f6d45e2c6da8f220a42d401f50",
-                "reference": "049583f8244b95f6d45e2c6da8f220a42d401f50",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6b304c949c9093c9106d8612166d4ae40412135e",
+                "reference": "6b304c949c9093c9106d8612166d4ae40412135e",
                 "shasum": ""
             },
             "require": {
@@ -903,7 +1282,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-01-18T11:06:08+00:00"
+            "time": "2019-01-21T12:21:47+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1390,12 +1769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "06ac73da6517f58afe998ed46f93825d7a277d8d"
+                "reference": "76b1c25e614c5e09adeb62f1b953536697a41a4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/06ac73da6517f58afe998ed46f93825d7a277d8d",
-                "reference": "06ac73da6517f58afe998ed46f93825d7a277d8d",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/76b1c25e614c5e09adeb62f1b953536697a41a4b",
+                "reference": "76b1c25e614c5e09adeb62f1b953536697a41a4b",
                 "shasum": ""
             },
             "require": {
@@ -1432,7 +1811,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-11-22T13:56:51+00:00"
+            "time": "2019-01-09T06:29:58+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2165,12 +2544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1d56f4b867f139db0b01f481e89370630f30d050"
+                "reference": "9394dc3eba44ffcd3fd44293e57e847ecbce3bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d56f4b867f139db0b01f481e89370630f30d050",
-                "reference": "1d56f4b867f139db0b01f481e89370630f30d050",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9394dc3eba44ffcd3fd44293e57e847ecbce3bd6",
+                "reference": "9394dc3eba44ffcd3fd44293e57e847ecbce3bd6",
                 "shasum": ""
             },
             "require": {
@@ -2241,7 +2620,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-01-17T11:26:09+00:00"
+            "time": "2019-01-24T16:01:13+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2959,12 +3338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d78ff9239213a6349455d08325ae2ca9b57f25c9"
+                "reference": "c195108dddab91f51b9c57f63e8b184d0a257a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d78ff9239213a6349455d08325ae2ca9b57f25c9",
-                "reference": "d78ff9239213a6349455d08325ae2ca9b57f25c9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c195108dddab91f51b9c57f63e8b184d0a257a54",
+                "reference": "c195108dddab91f51b9c57f63e8b184d0a257a54",
                 "shasum": ""
             },
             "require": {
@@ -3023,7 +3402,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-16T21:53:45+00:00"
+            "time": "2019-01-25T14:35:46+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -3682,7 +4061,11 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ereminmdev/yii2-infinite-scroll": 20,
+        "nirvana-msu/yii2-infinite-scroll": 20,
+        "kop/yii2-scroll-pager": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

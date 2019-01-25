@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\widgets\ListView;
+use yii\web\jQuery;
 /* @var $this yii\web\View */
 /* @var $model common\modules\gallery\models\Categories */
 
@@ -14,7 +15,20 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 $this->registerJs('baguetteBox.run(".gallery");');
+/*$this->registerJs(
+"var grid = $('.gallery').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+})
+var msnry = grid.data('masonry');
+grid.infiniteScroll({
+    append: '.grid-item',
+    outlayer: msnry,
+    path: '.nextPageCssClass',
+});"
 
+);*/
 ?>
 
 <div class="categories-view">
@@ -35,10 +49,10 @@ $this->registerJs('baguetteBox.run(".gallery");');
 
 </div>
 
-<!-- <?php
+<?php
 
-    echo Html::beginTag('div', ['class'=> 'gallery container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }']);
-    foreach ($picModels as $model) 
+
+/*    foreach ($picModels as $model) 
     {
         $url = $model->getPictureUrl($model);
         $img = Html::img($url, ['width'=>200, 'height'=>200]);
@@ -48,21 +62,26 @@ $this->registerJs('baguetteBox.run(".gallery");');
         echo Html::endTag('a');
         echo Html::endTag('div');
 
+    }*/
+
+
+echo Html::beginTag('div', ['class'=> 'gallery container']);
+\shiyang\masonry\Masonry::begin([
+        'options' => [
+          'id' => 'models'
+        ],
+        'pagination' => $pages
+    ]);
+    foreach ($models as $model) 
+    {
+        $url = $model->getPictureUrl($model);
+        $img = Html::img($url, ['width'=>200, 'height'=>200]);
+        echo Html::beginTag('div', ['class'=> 'grid-item']);
+        echo Html::beginTag('a', ['href'=> $url, 'data-caption'=> $model->pic_heading]);
+        echo $img;
+        echo Html::endTag('a');
+        echo Html::endTag('div');
     }
+\shiyang\masonry\Masonry::end();
     echo Html::endTag('div');
-
-
-
-?> -->
-
-
-<?php 
-echo Html::beginTag('div', ['class'=> 'gallery container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }']);
-
-echo ListView::widget([
-    'dataProvider' => $dataProvider,
-    'itemView' => '_pictures',
-]);
-
-echo Html::endTag('div');
- ?>
+?> 

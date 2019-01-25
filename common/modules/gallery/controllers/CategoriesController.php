@@ -3,6 +3,7 @@
 namespace common\modules\gallery\controllers;
 
 use Yii;
+use yii\data\Pagination;
 use common\modules\gallery\models\Categories;
 use common\modules\gallery\models\CategoriesSearch;
 use common\modules\gallery\models\PicturesSearch;
@@ -61,18 +62,22 @@ class CategoriesController extends Controller
     {
         $searchModel = new PicturesSearch();
         $model = Categories::findOne(['slug'=>$slug]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['pic_category'=> $model->cat_name])->all();
-        $dataProvider->pagination = ['pageSize' =>5];
 
-        $picModels = Pictures::find()->where(['pic_category'=>$model->cat_name])->all();
-/*        print_r($picModels);
-        die();*/
+
+        $query = Pictures::find()->where(['pic_category'=>$model->cat_name]);
+        $countQuery = clone $query; 
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $models = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+
+        
         return $this->render('view', [
             'model' => $model,
-            'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
-            'picModels' => $picModels,
+            'models' => $models,
+            'pages' => $pages,
         ]);
     }
 
