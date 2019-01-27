@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\helpers\Url;
+use yii\data\ActiveDataProvider;
 /**
  * CategoriesController implements the CRUD actions for Categories model.
  */
@@ -43,12 +44,10 @@ class CategoriesController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $pictureSet = Categories::getLatestPictures();
-/*        print_r($pictureSet);
-        die();*/
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'pictureSet'=>$pictureSet,
+            'pictureSet'=> $pictureSet,
         ]);
     }
 
@@ -60,10 +59,12 @@ class CategoriesController extends Controller
      */
     public function actionView($slug)
     {
+
+
+
+
         $searchModel = new PicturesSearch();
         $model = Categories::findOne(['slug'=>$slug]);
-
-
         $query = Pictures::find()->where(['pic_category'=>$model->cat_name]);
         $countQuery = clone $query; 
         $pages = new Pagination(['totalCount' => $countQuery->count()]);

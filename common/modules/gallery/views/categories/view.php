@@ -15,20 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 $this->registerJs('baguetteBox.run(".gallery");');
-/*$this->registerJs(
-"var grid = $('.gallery').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-})
-var msnry = grid.data('masonry');
-grid.infiniteScroll({
-    append: '.grid-item',
-    outlayer: msnry,
-    path: '.nextPageCssClass',
-});"
-
-);*/
 ?>
 
 <div class="categories-view">
@@ -65,17 +51,18 @@ grid.infiniteScroll({
     }*/
 
 
-echo Html::beginTag('div', ['class'=> 'gallery container']);
+echo Html::beginTag('div', ['class'=> 'gallery container', 'id' => 'gallery']);
 \shiyang\masonry\Masonry::begin([
         'options' => [
-          'id' => 'models'
+          'id' => 'models',
+          'columnWidth' => '200',
         ],
         'pagination' => $pages
     ]);
     foreach ($models as $model) 
     {
         $url = $model->getPictureUrl($model);
-        $img = Html::img($url, ['width'=>200, 'height'=>200]);
+        $img = Html::img($url);
         echo Html::beginTag('div', ['class'=> 'grid-item']);
         echo Html::beginTag('a', ['href'=> $url, 'data-caption'=> $model->pic_heading]);
         echo $img;
@@ -84,4 +71,5 @@ echo Html::beginTag('div', ['class'=> 'gallery container']);
     }
 \shiyang\masonry\Masonry::end();
     echo Html::endTag('div');
+
 ?> 

@@ -85,4 +85,5 @@ class Pictures extends \yii\db\ActiveRecord
         
         return $image;
     }
+
 }

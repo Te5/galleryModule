@@ -18,7 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="categories-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
     <?php
@@ -34,20 +33,25 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
     <?php
-        echo Html::beginTag('div', ['class'=> 'container','data-masonry'=>'{"itemSelector": ".grid-item", "columnWidth": 200 }' ]);
-        foreach ($pictureSet as $index => $array) 
-        {
-            foreach ($array as $slug => $url) 
-            {
-                $link = Url::to(['categories/view', 'slug' =>$slug]);
+        echo Html::beginTag('div', ['class'=> 'container','data-masonry'=>'{"itemSelector": ".category-item", "columnWidth": 100 }' ]);
+/*        print_r($pictureSet);
+        die();*/
+        foreach ($pictureSet as $category) 
+        {   
+/*                print_r($category);
+                die();*/
+                $link = Url::to(['categories/view', 'slug' =>$category['slug']]);
                 
-                echo Html::beginTag('div', ['class'=> 'grid-item']);
-                echo Html::beginTag('a', ['href'=> $link]);
-                echo Html::img($url, ['width'=>200]);
+                echo Html::beginTag('div', ['class'=> 'category-item']);
+                echo Html::beginTag('a', ['href'=> $link]);            
+                echo Html::img($category['url']);
                 echo Html::endTag('a');
+                echo Html::beginTag('div', ['class'=> 'content']);
+                echo Html::tag('p', $category['cat_name'] .' ('.$category['records'].')');
+                echo Html::endTag('div');
                 echo Html::endTag('div');
                 
-            }
+            
         }
         echo Html::endTag('div');
 

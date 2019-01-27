@@ -14,8 +14,9 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/baguetteBox.css',
-        /*'css/masonry.css'
-*/
+        'css/masonry.css',
+
+        'css/gallery.css',
     ];
     public $js = [
         'js/baguetteBox.js',
