@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
     <?php
-        echo Html::beginTag('div', ['class'=> 'container','data-masonry'=>'{"itemSelector": ".category-item", "columnWidth": 100 }' ]);
+        echo Html::beginTag('div', ['class'=> 'container','data-masonry'=>'{"itemSelector": ".category-item", "columnWidth": 0 }' ]);
 /*        print_r($pictureSet);
         die();*/
         foreach ($pictureSet as $category) 

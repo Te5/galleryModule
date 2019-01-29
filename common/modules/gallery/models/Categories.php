@@ -59,6 +59,7 @@ class Categories extends \yii\db\ActiveRecord
             $maxIdPictureModel = Pictures::find()->where(['id'=>$maxIdPicture])->one();
             $recordQuantity = Pictures::find()->where(['pic_category' => $category->cat_name])->count();
             //this adds an undefined question mark picture if category contains no pictures at all
+            
             if (!$maxIdPictureModel)
             {
                 $pictureUrl = \Yii::getAlias('@web').'/images/undefined.jpg';
@@ -67,8 +68,6 @@ class Categories extends \yii\db\ActiveRecord
                 $pictureUrl = $maxIdPictureModel::getPictureUrl($maxIdPictureModel);
             }
 
-/*            array_push($picturesArray, [$category->slug => $pictureUrl], [$category->slug => $recordQuantity]);*/
-            /*array_push($picturesArray, );*/
             $picturesArray[$category->cat_name] =
             [
                 'url' => $pictureUrl,
@@ -77,8 +76,7 @@ class Categories extends \yii\db\ActiveRecord
                 'cat_name'=> $category->cat_name,
             ];
         }
-/*        print_r($picturesArray);
-        die();*/
+
         return $picturesArray;
     }
 }

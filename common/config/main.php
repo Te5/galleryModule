@@ -15,5 +15,6 @@ return [
             'class' => 'common\modules\gallery\Gallery',
         ],
     ],
-    'defaultRoute' => 'gallery/default/index'
+    'defaultRoute' => 'gallery/default/index',
+    'name' => 'Gallery app task',
 ];

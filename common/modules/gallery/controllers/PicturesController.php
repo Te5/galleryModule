@@ -84,12 +84,13 @@ class PicturesController extends Controller
             {
 
                 $model->fileImage = UploadedFile::getInstance($model, 'fileImage');
+
                 $model->extension = $model->fileImage->extension;
                 $model->save();
                 if ($model->fileImage)
                 {
                     $url = Url::to('@images/' . $model->pic_category . '/'.$model->id . '.' . $model->fileImage->extension);
-                    $img = Pictures::createCompressedImage($model->fileImage->tempName, $model->extension, $url);
+                    $img = Pictures::createCompressedImage($model->fileImage->tempName, $model->extension, $url, $model->watermarkPosition);
                     /*$model->fileImage->saveAs($url);*/
                     /*$img->saveAs($url);*/
                 }

@@ -3,7 +3,7 @@
 namespace common\modules\gallery\models;
 
 use Yii;
-
+use yii\helpers\Url;
 /**
  * This is the model class for table "pictures".
  *
@@ -18,6 +18,7 @@ class Pictures extends \yii\db\ActiveRecord
 {
     public $url;
     public $fileImage;
+    public $watermarkPosition;
     /**
      * {@inheritdoc}
      */
@@ -32,7 +33,7 @@ class Pictures extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['author', 'pic_heading', 'pic_category', 'status', ], 'required', ],
+            [['author', 'pic_heading', 'pic_category', 'status', 'watermarkPosition' ], 'required', ],
             [['upload_date'], 'safe'],
             [['status'], 'string'],
             [['author', 'pic_heading', 'pic_category', 'extension'], 'string', 'max' => 255],
@@ -60,7 +61,7 @@ class Pictures extends \yii\db\ActiveRecord
         return \Yii::getAlias('@web').'/images/'.$model->pic_category.'/'.$model->id.'.'.$model->extension;
     }
 
-    public function createCompressedImage($file, $extension, $url) 
+    public function createCompressedImage($file, $extension, $url, $watermarkPosition) 
     {
         switch ($extension) 
         {
@@ -80,10 +81,58 @@ class Pictures extends \yii\db\ActiveRecord
                 break;
 
         }
+        if($watermarkPosition!= 0)
+        {
+            self::addWatermark($im, $watermarkPosition);
+        }
         header('Content-Type: image/jpeg');
         $image = imagejpeg($im, $url, 40);
-        
         return $image;
     }
 
+    private function addWatermark($image, $position)
+    {
+        $width = imagesx($image);
+        $height = imagesy($image);
+
+        $white_color = imagecolorallocate($image, 255, 255, 255);
+        $font_path = \Yii::$app->basePath.'/web/fonts/aleo.ttf';
+
+        $text = \Yii::$app->name;
+        $size = 20;
+        $angle = 0;
+        switch ($position) {
+            case 2: //left upper
+                $left = $width * 0.03;
+                $top = $height * 0.03;
+                break;
+            case 1: //left down
+                $left = $width * 0.025;
+                $top = $height * 0.99;            
+                break;
+            case 4: //right u
+                $left = $width * 0.85;
+                $top = $height * 0.03;
+                break;
+            case 3: //right u
+                $left = $width * 0.8;
+                $top = $height * 0.99;             
+            default:
+                die('Incorrect placement parametr');
+                break;
+        }
+
+
+        return imagettftext($image, $size, $angle, $left, $top, $white_color, $font_path, $text);
+
+/*        $image_with_watermark = imagejpeg($image);
+        print_r($image_with_watermark);
+        die();*/
+    }
+
+    public function cropImageForThumbnail($image)
+    {
+
+
+    }
 }

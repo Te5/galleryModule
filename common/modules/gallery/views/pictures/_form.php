@@ -29,6 +29,13 @@ use yii\helpers\Url;
             3 => 'Admin only'    ]) ?>
 
     <?= $form->field($model, 'fileImage')->fileInput() ?>
+
+    <?= $form->field($model, 'watermarkPosition')->label('Watermark')->radioList([
+            0 => 'Do not place',
+            1 => 'Left down corner',
+            2 => 'Left upper corner',
+            3 => 'Right down corner',
+            4 => 'Right upper corner'    ]) ?>    
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
     </div>
