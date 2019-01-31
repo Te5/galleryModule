@@ -15,13 +15,14 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/baguetteBox.css',
         'css/masonry.css',
-
         'css/gallery.css',
     ];
     public $js = [
         'js/baguetteBox.js',
         'js/masonry.pkgd.js',
         'js/infinite-scroll.pkgd.min.js',
+/*        'js/myscript.js',*/
+        'js/imagesloaded.pkgd.min.js',
 
     ];
     public $depends = [

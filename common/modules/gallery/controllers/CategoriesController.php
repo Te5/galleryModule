@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\helpers\Url;
-use yii\data\ActiveDataProvider;
+use yii\data\ActiveDataProvider; 
 /**
  * CategoriesController implements the CRUD actions for Categories model.
  */
@@ -60,9 +60,6 @@ class CategoriesController extends Controller
     public function actionView($slug)
     {
 
-
-
-
         $searchModel = new PicturesSearch();
         $model = Categories::findOne(['slug'=>$slug]);
         $query = Pictures::find()->where(['pic_category'=>$model->cat_name]);
@@ -81,7 +78,27 @@ class CategoriesController extends Controller
             'pages' => $pages,
         ]);
     }
+    public function actionViewalt($slug)
+    {
 
+        $searchModel = new PicturesSearch();
+        $model = Categories::findOne(['slug'=>$slug]);
+        $query = Pictures::find()->where(['pic_category'=>$model->cat_name]);
+        $countQuery = clone $query; 
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $models = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+
+        
+        return $this->render('alt_view', [
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'models' => $models,
+            'pages' => $pages,
+        ]);
+    }
     /**
      * Creates a new Categories model.
      * If creation is successful, the browser will be redirected to the 'view' page.

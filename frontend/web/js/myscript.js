@@ -1,29 +1,31 @@
-/**
- * Infinite Scroll + Masonry + ImagesLoaded
- */
+
 (function() {
 
 	// Main content container
-	var $container = $('#content');
+	var $container = $('.gallery');
 
 	// Masonry + ImagesLoaded
 	$container.imagesLoaded(function(){
 		$container.masonry({
 			// selector for entry content
-			itemSelector: '.entry-content',
+			itemSelector: '.grid-item',
 			columnWidth: 200
 		});
 	});
 
 	// Infinite Scroll
-	$container.infinitescroll({
-
+	$container.infiniteScroll({
+		path: function() 
+		{
+			return window.location.href;
+		},
 		// selector for the paged navigation (it will be hidden)
-		navSelector  : ".navigation",
+		append: '.grid-item',
+		navSelector  : ".pagination",
 		// selector for the NEXT link (to page 2)
-		nextSelector : ".nav-previous a",
+		nextSelector : ".next",
 		// selector for all items you'll retrieve
-		itemSelector : ".entry-content",
+		itemSelector : ".grid-item",
 
 		// finished message
 		loading: {
