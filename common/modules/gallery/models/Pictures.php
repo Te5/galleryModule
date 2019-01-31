@@ -87,6 +87,7 @@ class Pictures extends \yii\db\ActiveRecord
         }
         header('Content-Type: image/jpeg');
         $image = imagejpeg($im, $url, 40);
+        imagedestroy($im);
         return $image;
     }
 
@@ -95,11 +96,14 @@ class Pictures extends \yii\db\ActiveRecord
         $width = imagesx($image);
         $height = imagesy($image);
 
+        /*$ratio = $width / $height;*/
         $white_color = imagecolorallocate($image, 255, 255, 255);
         $font_path = \Yii::$app->basePath.'/web/fonts/aleo.ttf';
 
-        $text = \Yii::$app->name;
-        $size = 20;
+        $text = 'Gallery.dvp';
+
+        
+        $size = self::calculateWatermarkWidth($width, $text);
         $angle = 0;
         switch ($position) {
             case 2: //left upper
@@ -110,13 +114,14 @@ class Pictures extends \yii\db\ActiveRecord
                 $left = $width * 0.025;
                 $top = $height * 0.99;            
                 break;
-            case 4: //right u
-                $left = $width * 0.85;
+            case 3: //right d
+                $left = $width * 0.8;
                 $top = $height * 0.03;
                 break;
-            case 3: //right u
-                $left = $width * 0.8;
-                $top = $height * 0.99;             
+            case 4: //right u
+                $left = $width * 0.85;
+                $top = $height * 0.99;
+                break;             
             default:
                 die('Incorrect placement parametr');
                 break;
@@ -134,5 +139,19 @@ class Pictures extends \yii\db\ActiveRecord
     {
 
 
+    }
+
+    private function calculateWatermarkWidth($imageWidth, $text)
+    {
+        //the aim of the function is to calculate the required font size of the watermark to be applied on the image.
+        //You should provide your image width and text you`re going to use on watermark. Function returns a number, representing the required size.
+        $font_path = \Yii::$app->basePath.'/web/fonts/aleo.ttf';
+        //original font size is set to 20pt, lets calculate from that
+        $tb = imagettfbbox(20, 0, $font_path, $text);
+        $scale = ceil ($imageWidth / $tb[2]);
+        if ($scale < 8) {
+            $scale = 8;
+        }
+        return $scale;
     }
 }

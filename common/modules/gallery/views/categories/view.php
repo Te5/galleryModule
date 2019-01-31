@@ -59,8 +59,11 @@ echo Html::beginTag('div', ['class'=> 'gallery container', 'id' => 'gallery']);
         ],
         'pagination' => $pages
     ]);
+/*    print_r($models);
+    die();*/
     foreach ($models as $model) 
     {
+
         $url = $model->getPictureUrl($model);
         $img = Html::img($url);
         echo Html::beginTag('div', ['class'=> 'grid-item']);

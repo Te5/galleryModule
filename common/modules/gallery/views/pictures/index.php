@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\common\modules\gallery\models\PicturesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -32,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'upload_date',
             //'status:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+           ['class' => 'yii\grid\ActionColumn', 'urlCreator' => function ($action, $model, $key, $index) {
+
+                        return Url::to(['pictures/'.$action, 'id'=>$model->id]);
+                    }
+            
+            ],
+
         ],
     ]); ?>
 </div>

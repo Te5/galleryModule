@@ -19,12 +19,12 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
 	"philippfrenzel/yii2masonry": "*",
-	"newerton/yii2-fancybox-3": "*",
-        "ereminmdev/yii2-infinite-scroll": "dev-master",
-	"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
-        "kop/yii2-scroll-pager": "dev-master",
+	"newerton/yii2-fancybox-3": "*"	,
         "shiyang/yii2-masonry": "*",
-	"bower-asset/imagesloaded": "*"
+	"bower-asset/imagesloaded": "*",
+	"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
+
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

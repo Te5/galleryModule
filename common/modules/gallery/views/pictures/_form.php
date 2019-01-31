@@ -35,7 +35,8 @@ use yii\helpers\Url;
             1 => 'Left down corner',
             2 => 'Left upper corner',
             3 => 'Right down corner',
-            4 => 'Right upper corner'    ]) ?>    
+            4 => 'Right upper corner',
+                ]) ?>    
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
     </div>
