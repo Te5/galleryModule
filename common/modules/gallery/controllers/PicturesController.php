@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
+
 /**
  * PicturesController implements the CRUD actions for Pictures model.
  */
@@ -38,13 +39,20 @@ class PicturesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PicturesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
+        {
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else  
+        {
+            $searchModel = new PicturesSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);                
+        }        
+
     }
 
     /**
@@ -115,16 +123,23 @@ class PicturesController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $categories = new Categories();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
+        {
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else
+        {
+            $model = $this->findModel($id);
+            $categories = new Categories();
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('update', [
-            'model' => $model,
-            'categories' => $categories,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+                'categories' => $categories,
+            ]);            
+        }        
+
     }
 
     /**
@@ -136,16 +151,23 @@ class PicturesController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $url = $model->getPictureUrl($model);
-        $deleteUrl = Yii::$app->basePath.'/web'.$url;
-        if(file_exists($deleteUrl))
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
         {
-            unlink($deleteUrl);
-        }
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else
+        {
+            $model = $this->findModel($id);
+            $url = $model->getPictureUrl($model);
+            $deleteUrl = Yii::$app->basePath.'/web'.$url;
+            if(file_exists($deleteUrl))
+            {
+                unlink($deleteUrl);
+            }
 
-        $model->delete();
-        return $this->redirect(['index']);
+            $model->delete();
+            return $this->redirect(['index']);               
+        }        
+
     }
 
     /**

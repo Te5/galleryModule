@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider; 
+use yii\helpers\ArrayHelper;
 /**
  * CategoriesController implements the CRUD actions for Categories model.
  */
@@ -97,6 +98,7 @@ class CategoriesController extends Controller
             'searchModel' => $searchModel,
             'models' => $models,
             'pages' => $pages,
+            'dataProvider' => $query,
         ]);
     }
     /**
@@ -116,7 +118,7 @@ class CategoriesController extends Controller
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $dir = Url::to('@images/'.$model->slug);
                 mkdir($dir);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'slug' => $model->slug]);
             }
 
             return $this->render('create', [
@@ -133,17 +135,24 @@ class CategoriesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($slug)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
+        {
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else 
+        {
+            $model = $this->findModel(['slug' => $slug]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'slug' => $model->slug]);
+            }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);                
+        }        
+
     }
 
     /**
@@ -153,12 +162,54 @@ class CategoriesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($slug)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
+        {
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else 
+        {
+            $model = $this->findModel($slug);
+            $model->scenario = Categories::SCENARIO_DELETE;  
+            //searchmodel is to be presented with category options if admin decides to move all the pics after deletion              
+            $searchModel = new CategoriesSearch();
+            $categoriesArray = ArrayHelper::map($searchModel::find()->all(), 'cat_name', 'cat_name');
+            unset($categoriesArray[$model->cat_name]); //delete current category from the list
+            if ($model->load(Yii::$app->request->post()) && $model->save())
+            {
+                $model->categoryDeletionHandler($model->adminDeletionChoice, $model->cat_name, $model->categoryToReceiveImages);
+                        
+                \Yii::$app->getSession()->setFlash('success', 'Category deleted');
+                return Yii::$app->getResponse()->redirect(['gallery/categories']);        
+                echo Yii::$app->session->getFlash('success');                
+            }
+            
 
-        return $this->redirect(['index']);
+            return $this->render('cat_delete', [
+                'model' => $model,
+                'categoriesArray' => $categoriesArray,
+            ]);              
+        }
+      
     }
+
+    public function actionManage() 
+    {
+        if(Yii::$app->user->isGuest or Yii::$app->user->identity->username != 'admin')
+        {
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице.');
+        } else   
+        {
+            $searchModel = new CategoriesSearch(); 
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams); 
+
+            return $this->render('manage', [ 
+                'searchModel' => $searchModel, 
+                'dataProvider' => $dataProvider, 
+            ]);             
+        }   
+
+    } 
 
     /**
      * Finds the Categories model based on its primary key value.
@@ -167,9 +218,9 @@ class CategoriesController extends Controller
      * @return Categories the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($slug)
     {
-        if (($model = Categories::findOne($id)) !== null) {
+        if (($model = Categories::findOne(['slug'=>$slug])) !== null) {
             return $model;
         }
 

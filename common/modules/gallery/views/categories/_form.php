@@ -16,10 +16,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropdownList([
+            0 => 'Shown',
+            1 => 'Hidden',
+            2 => 'Authorized users only',
+            3 => 'Admin only',
+                ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Delete', ['delete', 'slug' => $model->slug], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to proceed to category deletion?',
+                'method' => 'post',
+                
+            ],
+        ]) ?>        
     </div>
 
     <?php ActiveForm::end(); ?>

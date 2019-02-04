@@ -58,9 +58,13 @@ echo Html::beginTag('div', ['class'=> 'gallery']);
     }
 echo Html::endTag('div');     
   //divs are for the selector for the paged nav  
-  echo Html::beginTag('div', ['class'=> 'navigation']);  
+
   echo LinkPager::widget([
     'pagination' => $pages,
+    'linkOptions' =>
+    ['class'=> 'pg'],
+
     ]);
-  echo Html::endTag('div'); 
+
+
 ?> 

@@ -17,4 +17,5 @@ return [
     ],
     'defaultRoute' => 'gallery/default/index',
     'name' => 'Gallery app task',
+
 ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbc4a3491a8b129bbbaf25a52ba0aa79",
+    "content-hash": "e03fe3d3451067ebc3438a4dbc4ab852",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -474,6 +474,53 @@
                 "validator"
             ],
             "time": "2018-12-04T22:38:24+00:00"
+        },
+        {
+            "name": "ereminmdev/yii2-infinite-scroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll.git",
+                "reference": "1432cbaf7ee7ceda553f6d115faefe73a091200d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll/get/1432cbaf7ee7ceda553f6d115faefe73a091200d.zip",
+                "reference": "1432cbaf7ee7ceda553f6d115faefe73a091200d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "webcreate/jquery-ias": "^2.2",
+                "yiisoft/yii2": "~2.0.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ereminmdev\\yii2\\infinite_scroll\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Eremin",
+                    "email": "ereminmdev@gmail.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Infinite ajax scroll widget for Yii framework.",
+            "homepage": "https://bitbucket.org/ereminmdev/yii2-infinite-scroll",
+            "keywords": [
+                "javascript",
+                "pager",
+                "pagination",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-03-15T13:01:25+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1050,17 +1097,57 @@
             "time": "2018-09-21T13:07:52+00:00"
         },
         {
+            "name": "webcreate/jquery-ias",
+            "version": "2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webcreate/infinite-ajax-scroll.git",
+                "reference": "33e0096ca99eef256a98340131791de7d09c202a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webcreate/infinite-ajax-scroll/zipball/33e0096ca99eef256a98340131791de7d09c202a",
+                "reference": "33e0096ca99eef256a98340131791de7d09c202a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fieg",
+                    "email": "jeroen@webcreate.nl",
+                    "homepage": "http://webcreate.nl"
+                }
+            ],
+            "description": "Infinite Ajax Scroll: A jQuery plugin that turns your server-side pagination into an infinite scrolling one using AJAX",
+            "homepage": "https://infiniteajaxscroll.com",
+            "keywords": [
+                "ajax",
+                "ias",
+                "infinite",
+                "jquery",
+                "pagination",
+                "scroll",
+                "scrolling"
+            ],
+            "time": "2018-10-01T11:39:46+00:00"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "2af7a988dfea0f476467d1215d7f22095df65749"
+                "reference": "75c9096d5ae13805c738e206eb81fd4f64e6d477"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2af7a988dfea0f476467d1215d7f22095df65749",
-                "reference": "2af7a988dfea0f476467d1215d7f22095df65749",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/75c9096d5ae13805c738e206eb81fd4f64e6d477",
+                "reference": "75c9096d5ae13805c738e206eb81fd4f64e6d477",
                 "shasum": ""
             },
             "require": {
@@ -1147,7 +1234,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-01-29T07:56:22+00:00"
+            "time": "2019-01-30T23:54:44+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -3930,7 +4017,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nirvana-msu/yii2-infinite-scroll": 20
+        "nirvana-msu/yii2-infinite-scroll": 20,
+        "ereminmdev/yii2-infinite-scroll": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

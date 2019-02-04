@@ -11,7 +11,8 @@ use yii\helpers\Url;
 
 $this->title = 'Photogallery';
 $this->params['breadcrumbs'][] = $this->title;
-
+/*print_r(\Yii::getAlias('@assets'));
+die();*/
 
 \frontend\assets\AppAsset::register($this);
 ?>
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     if(!Yii::$app->user->isGuest and Yii::$app->user->identity->username === 'admin') 
     {
-        echo Html::a('Create a category', ['create'], ['class' => 'btn btn-success']);
+        echo Html::a('Create a category', [Url::to('categories/create')], ['class' => 'btn btn-success']);
         echo Html::a('Submit a picture', [Url::to('pictures/create')], ['class' => 'btn btn-success']);   
     }        
 

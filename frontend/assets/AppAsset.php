@@ -23,6 +23,8 @@ class AppAsset extends AssetBundle
         'js/infinite-scroll.pkgd.min.js',
 /*        'js/myscript.js',*/
         'js/imagesloaded.pkgd.min.js',
+        'js/callbacks.js',
+        'js/jquery-ias.min.js'
 
     ];
     public $depends = [

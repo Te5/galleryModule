@@ -22,7 +22,8 @@
 	"newerton/yii2-fancybox-3": "*"	,
         "shiyang/yii2-masonry": "*",
 	"bower-asset/imagesloaded": "*",
-	"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
+	"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
+        "ereminmdev/yii2-infinite-scroll": "dev-master"
 
 
     },

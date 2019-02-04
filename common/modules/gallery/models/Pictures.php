@@ -19,6 +19,9 @@ class Pictures extends \yii\db\ActiveRecord
     public $url;
     public $fileImage;
     public $watermarkPosition;
+
+    const SCENARIO_DEFAULT = 'default';
+    const SCENARIO_MOVE = 'move';    
     /**
      * {@inheritdoc}
      */
@@ -33,14 +36,20 @@ class Pictures extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['author', 'pic_heading', 'pic_category', 'status', 'watermarkPosition' ], 'required', ],
+            [['author', 'pic_heading', 'pic_category', 'status'], 'required', ],
+            [['watermarkPosition'], 'required', 'on' => 'default'],
             [['upload_date'], 'safe'],
             [['status'], 'string'],
             [['author', 'pic_heading', 'pic_category', 'extension'], 'string', 'max' => 255],
-            [['fileImage'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024*1024*10, ],
+            [['fileImage'], 'image', 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024*1024*10, 'minWidth' => 400, 'minHeight' => 400 ],
         ];
     }
-
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_DEFAULT => ['author', 'pic_heading', 'pic_category', 'status','watermarkPosition'],
+            self::SCENARIO_MOVE => ['author', 'pic_heading', 'pic_category', 'status',]];
+    }
     /**
      * {@inheritdoc}
      */
@@ -81,6 +90,10 @@ class Pictures extends \yii\db\ActiveRecord
                 break;
 
         }
+/*        if(imagesx($im) < imagesy($im))
+        {
+            self::cropImageForThumbnail($im);
+        }*/
         if($watermarkPosition!= 0)
         {
             self::addWatermark($im, $watermarkPosition);
@@ -96,7 +109,7 @@ class Pictures extends \yii\db\ActiveRecord
         $width = imagesx($image);
         $height = imagesy($image);
 
-        /*$ratio = $width / $height;*/
+
         $white_color = imagecolorallocate($image, 255, 255, 255);
         $font_path = \Yii::$app->basePath.'/web/fonts/aleo.ttf';
 
@@ -114,11 +127,11 @@ class Pictures extends \yii\db\ActiveRecord
                 $left = $width * 0.025;
                 $top = $height * 0.99;            
                 break;
-            case 3: //right d
+            case 4: //right d
                 $left = $width * 0.8;
                 $top = $height * 0.03;
                 break;
-            case 4: //right u
+            case 3: //right u
                 $left = $width * 0.85;
                 $top = $height * 0.99;
                 break;             
@@ -135,9 +148,10 @@ class Pictures extends \yii\db\ActiveRecord
         die();*/
     }
 
-    public function cropImageForThumbnail($image)
+    private function cropImageForThumbnail($image)
     {
-
+        //main purpose of this function is to resize image if it`s width is lower than height in order for it to look pretty on thumbnail
+        //to be developed when i`m in the mood
 
     }
 
